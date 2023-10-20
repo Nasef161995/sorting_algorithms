@@ -8,11 +8,11 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-listint_t *temp;/*temp is used in outer loop to traverse the unsorted list*/
+listint_t *temp; /*temp is used in outer loop to traverse the unsorted list*/
 
 /*used in the inner loop for comparing and swapping nodes*/
 listint_t *current, *ptr;
-if (*list == NULL)
+if (list == NULL || *list == NULL)
 return;
 
 /*outer loop starts from second element*/
