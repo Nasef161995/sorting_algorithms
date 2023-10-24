@@ -9,24 +9,43 @@
  */
 void shell_sort(int *array, size_t size)
 {
-int temp;
-size_t i, j, gap;
-if (array && size > 1)
-{
+size_t i, j, gap, a;
+
 gap = 1;
 while (gap < size)
-gap = 3 * gap + 1;
+gap = (gap * 3) + 1;
 gap = (gap - 1) / 3;
-for (; gap > 0; gap = (gap - 1) / 3)
+
+while (gap > 0)
 {
-for (i = gap; i < size; i++)
+for (i = 0; i < size; i++)
 {
-temp = array[i];
-for (j = i; j >= gap && array[j - 1] > temp; j -= gap)
-array[j] = array[j - gap];
-array[j] = temp;
+for (j = i; j < size - gap; j += gap)
+{
+if (array[j] > array[j + gap])
+swap(&array[j], &array[j + gap]);
+a = j;
+while (a >= gap)
+{
+if (array[a] < array[a - gap])
+swap(&array[a], &array[a - gap]);
+a -= gap;
 }
+}
+}
+gap = (gap - 1) / 3;
 print_array(array, size);
 }
 }
+
+/**
+* swap - .........
+* @x: .....
+* @y: .....
+*/
+void swap(int *x, int *y)
+{
+int temp = *x;
+*x = *y;
+*y = temp;
 }
